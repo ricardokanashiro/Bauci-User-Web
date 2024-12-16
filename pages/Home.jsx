@@ -1,10 +1,10 @@
 const Home = () => {
    return (
-      <div className="home">
+      <div className="flex-1">
 
-         <h1>Olá Ricardo</h1>
+         <h1 className="font-bold text-[2.4rem]">Olá Ricardo</h1>
 
-         <div className="home__input-wrapper">
+         <div className="">
 
             <input type="text" />
 
