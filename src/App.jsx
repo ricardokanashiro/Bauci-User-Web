@@ -1,4 +1,5 @@
 import Login from "@/pages/Login"
+import Home from "@/pages/Home"
 
 import { useLoggedContext } from "@/contexts/loggedContext/loggedContext"
 
@@ -8,7 +9,7 @@ const App = () => {
 
    return (
       <>
-         { logged ? <h1>Logado mano!</h1> : (<Login />) }
+         { logged ? <Home /> : <Login /> }
       </>
    )
 }

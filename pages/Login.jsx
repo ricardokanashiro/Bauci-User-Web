@@ -2,12 +2,15 @@ import { useState } from "react"
 
 import { useLoggedContext } from "@/contexts/loggedContext/loggedContext"
 
-import "@/styles/login-page.css"
-
 const Login = () => {
 
    const [loginCredentials, setLoginCredentials] = useState({ login: '', senha: '' })
    const { setLogged } = useLoggedContext()
+
+   const estilos = {
+      label: "text-veryDarkBlue font-semibold text-[12px]",
+      input: "block border-lightGray border-[.15rem] border-solid w-full rounded-[.6rem] p-[.8rem] mt-[.6rem] outline-none"
+   }
 
    async function logIn() {
 
@@ -39,47 +42,56 @@ const Login = () => {
    }
 
    return (
-      <div className="login-page">
+      <div className="flex flex-col items-center bg-veryDarkBlue w-full h-full">
 
-         <div className="login-page__logo-wrapper">
+         <div className="flex-1 flex justify-center items-center">
             <img src="/bauci-logo.svg" alt="bauci logo" />
          </div>
 
-         <form className="login-page__credentials-area" onSubmit={(e) => e.preventDefault()}>
+         <form 
+            className="w-full h-[300px] bg-white p-[25px] rounded-tl-[8px] rounded-tr-[8px] flex flex-col justify-between" 
+            onSubmit={(e) => e.preventDefault()}
+         >
 
-            <div className="credentials-area__input-area">
+            <div>
 
-               <h1>Bem Vindo</h1>
+               <h1 className="text-[2.4rem] font-bold">Bem Vindo</h1>
 
-               <fieldset>
+               <fieldset className="mt-[2rem]">
 
-                  <label htmlFor="loginInput">Login</label>
+                  <label htmlFor="loginInput" className={estilos.label}>Login</label>
 
                   <input 
                      type="text" 
                      placeholder="Insira seu login" 
                      id="loginInput"
                      onChange={(e) => setLoginCredentials(prev => ({...prev, login: e.target.value}))}
+                     className={estilos.input}
                   />
 
                </fieldset>
 
-               <fieldset>
+               <fieldset className="mt-[1rem]">
 
-                  <label htmlFor="senhaInput">Senha</label>
+                  <label htmlFor="senhaInput" className="text-veryDarkBlue font-semibold text-[12px]">Senha</label>
 
                   <input 
                      type="password" 
                      placeholder="Insira sua senha" 
                      id="senhaInput"
-                     onChange={(e) => setLoginCredentials(prev => ({...prev, senha: e.target.value}))} 
+                     onChange={(e) => setLoginCredentials(prev => ({...prev, senha: e.target.value}))}
+                     className={estilos.input}
                   />
 
                </fieldset>
                
             </div>
 
-            <button type="submit" onClick={logIn}>Entrar</button>
+            <button 
+               type="submit" 
+               onClick={logIn} 
+               className="bg-veryDarkBlue text-white font-bold w-full text-[1.3rem] p-[1rem] rounded-[.6rem]"
+            >Entrar</button>
 
          </form>
 
