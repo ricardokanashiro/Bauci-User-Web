@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import FilterList from "../components/FilterList"
+import HomeProdutoCard from "../components/HomeProdutoCard"
 
 const Home = () => {
 
@@ -33,6 +34,18 @@ const Home = () => {
          </div>
 
          <FilterList />
+
+         <div className="mt-[3rem]">
+
+            <HomeProdutoCard 
+               nome="Tomate"
+               prazoMin={1}
+               prazoMax={2}
+               descricao="Tomate americano unidade"
+               img="/Image Content.png"
+            />
+
+         </div>
 
       </div>
    )
