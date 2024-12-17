@@ -1,18 +1,38 @@
+import { useState } from "react"
+
+import FilterList from "../components/FilterList"
+
 const Home = () => {
+
+   const [searchValue, setSearchValue] = useState("")
+
    return (
-      <div className="flex-1">
+      <div className="flex-1 p-[2rem]">
 
-         <h1 className="font-bold text-[2.4rem]">Olá Ricardo</h1>
+         <div className="flex justify-between items-center">
 
-         <div className="">
+            <h1 className="font-bold text-[2.6rem]">Olá Ricardo</h1>
 
-            <input type="text" />
-
-            <button>
-               <img src="/x-icon gray.svg" alt="ícone de X" />
-            </button>
+            <div className="bg-veryDarkBlue pt-[.6rem] pb-[.6rem] pr-[1rem] pl-[1rem] rounded-[.4rem]">
+               <p className="text-white font-medium text-[1.2rem]">Cozinha</p>
+            </div>
 
          </div>
+
+
+         <div className="border-solid border-lightGray border-[.2rem] p-[.8rem] rounded-[.4rem] flex justify-center items-center mt-[2rem] gap-[1rem]">
+
+            <input type="text" placeholder="Nome do produto" className="flex-1 text-[1.2rem] outline-none" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+
+            { searchValue && (
+               <button onClick={() => setSearchValue("")}>
+                  <img src="/x-icon gray.svg" alt="ícone de X" />
+               </button>
+            ) }
+
+         </div>
+
+         <FilterList />
 
       </div>
    )

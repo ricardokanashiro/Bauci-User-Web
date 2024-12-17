@@ -6,7 +6,7 @@ import Usuario from "@/pages/Usuario"
 
 const estilos = {
    menuBtn: "h-full flex-1 flex justify-center items-center flex-col gap-[.2rem]",
-   menuBtnText: "text-veryDarkBlue font-medium text-[1.2rem]"
+   menuBtnText: "font-medium text-[1.2rem]"
 }
 
 const Layout = () => {
@@ -28,7 +28,7 @@ const Layout = () => {
 
                <p 
                   className={sectionSelected === "home" 
-                     ? estilos.menuBtnText 
+                     ? estilos.menuBtnText + " text-veryDarkBlue"
                      : estilos.menuBtnText + " text-[#C0C0C0]"
                   }
                >
