@@ -9,8 +9,6 @@ const HomeProdutoList = ({ productsList, searchValue }) => {
    return (
       <div className="mt-[3rem] flex-1 overflow-auto flex flex-col gap-[1rem] pb-[2rem]">
 
-         { console.log(filtersSelected) }
-
          {
             searchValue !== "" ?
 
@@ -39,11 +37,9 @@ const HomeProdutoList = ({ productsList, searchValue }) => {
                         descricao={produto.descricao}
                         prazoMin={produto.prazominimo}
                         prazoMax={produto.prazomaximo}
-                        image={produto.imagem}
+                        img={produto.imagem}
                         id={produto.produtoid}
-                        onLeft={index % 2 !== 0}
                         key={produto.produtoid}
-                        index={index}
                      />
                   ))
 

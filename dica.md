@@ -1,2 +1,0 @@
-- limitar body request
-- time rate
