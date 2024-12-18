@@ -54,7 +54,7 @@ const Layout = () => {
 
             <button className={estilos.menuBtn} onClick={() => setSectionSelected("usuario")}>
 
-               <img src={sectionSelected === "usuario" ? "/user-icon.svg" : "/user-icon-disabled.svg"} alt="ícone de usuario" />
+               <img src={sectionSelected === "usuario" ? "/user-icon.svg" : "/user-Icon-disabled.svg"} alt="ícone de usuario" />
 
                <p 
                   className={sectionSelected === "usuario" 
