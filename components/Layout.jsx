@@ -39,7 +39,7 @@ const Layout = () => {
 
             <button className={estilos.menuBtn} onClick={() => setSectionSelected("lista")}>
 
-               <img src={sectionSelected === "lista" ? "/list-icon.svg" : "/list-icon-disabled.svg"} alt="ícone de casa" />
+               <img src={sectionSelected === "lista" ? "/list-icon.svg" : "/list-icon-disabled.svg"} alt="ícone de lista" />
 
                <p 
                   className={sectionSelected === "lista" 
@@ -54,7 +54,7 @@ const Layout = () => {
 
             <button className={estilos.menuBtn} onClick={() => setSectionSelected("usuario")}>
 
-               <img src={sectionSelected === "usuario" ? "user-icon.svg" : "/user-icon-disabled.svg"} alt="ícone de casa" />
+               <img src={sectionSelected === "usuario" ? "/user-icon.svg" : "/user-icon-disabled.svg"} alt="ícone de usuario" />
 
                <p 
                   className={sectionSelected === "usuario" 
