@@ -9,8 +9,8 @@ const App = () => {
 
    return (
       <>
-         {/* { logged ? <Layout /> : <Login /> } */}
-         <Layout />
+         { logged ? <Layout /> : <Login /> }
+         {/* <Layout /> */}
       </>
    )
 }

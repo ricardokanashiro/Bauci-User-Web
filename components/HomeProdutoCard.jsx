@@ -1,8 +1,8 @@
 const HomeProdutoCard = ({ nome, prazoMin, prazoMax, descricao, img }) => {
    return (
-      <div className="w-full h-[15rem] flex border-[.2rem] border-veryDarkBlue rounded-[1rem]">
+      <div className="w-full h-[15rem] flex border-[.2rem] border-veryDarkBlue rounded-[1rem] shrink-0">
 
-         <img src={img} alt="produto image" className="w-[12rem] object-cover" />
+         <img src={img} alt="produto image" className="w-[12rem] object-cover rounded-[1rem]" />
 
          <div className="p-[1rem] flex flex-col justify-between flex-1">
 

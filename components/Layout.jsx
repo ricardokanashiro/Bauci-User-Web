@@ -14,7 +14,7 @@ const Layout = () => {
    const [sectionSelected, setSectionSelected] = useState("home")
 
    return (
-      <div className="flex flex-col w-full h-full">
+      <div className="flex flex-col w-full h-full max-h-[100dvh]">
 
          { sectionSelected === "home" && <Home /> }
          { sectionSelected === "lista" && <Lista /> }
