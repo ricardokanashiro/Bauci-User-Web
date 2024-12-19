@@ -1,4 +1,17 @@
+import { useModalsContext } from "@/contexts/modalsContext/modalsContext"
+import { useProductsSelectedContext } from "@/contexts/productsSelectedContext/productsSelectedContext"
+
 const HomeProdutoCard = ({ nome, prazoMin, prazoMax, descricao, img }) => {
+
+   const { toggleSelectProductModal } = useModalsContext()
+   const { setProductSelected } = useProductsSelectedContext()
+
+   function handleSelectProduct() {
+
+      setProductSelected({ nome, prazoMax, prazoMin, img })
+      toggleSelectProductModal()
+   }
+
    return (
       <div className="w-full h-[15rem] flex border-[.2rem] border-veryDarkBlue rounded-[1rem] shrink-0">
 
@@ -18,7 +31,12 @@ const HomeProdutoCard = ({ nome, prazoMin, prazoMax, descricao, img }) => {
 
             </div>
 
-            <button className="bg-veryDarkBlue text-white w-full p-[.8rem] rounded-[.4rem] font-bold">Adicionar a Lista</button>
+            <button 
+               className="bg-veryDarkBlue text-white w-full p-[.8rem] rounded-[.4rem] font-bold"
+               onClick={handleSelectProduct}
+            >
+               Adicionar a Lista
+            </button>
 
          </div>
 

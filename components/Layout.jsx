@@ -3,6 +3,9 @@ import { useState } from "react"
 import Home from "@/pages/Home"
 import Lista from "@/pages/Lista"
 import Usuario from "@/pages/Usuario"
+import ModalsWrapper from "@/components/ModalsWrapper"
+
+import { useModalsContext } from "../contexts/modalsContext/modalsContext"
 
 const estilos = {
    menuBtn: "h-full flex-1 flex justify-center items-center flex-col gap-[.2rem]",
@@ -13,12 +16,16 @@ const Layout = () => {
 
    const [sectionSelected, setSectionSelected] = useState("home")
 
+   const { modalsWrapperActive } = useModalsContext()
+
    return (
       <div className="flex flex-col w-full h-full max-h-[100dvh]">
 
          { sectionSelected === "home" && <Home /> }
          { sectionSelected === "lista" && <Lista /> }
          { sectionSelected === "usuario" && <Usuario /> }
+
+         { modalsWrapperActive && <ModalsWrapper /> }
 
          <div className="border-t-[.2rem] border-veryDarkBlue h-[6rem] flex">
 

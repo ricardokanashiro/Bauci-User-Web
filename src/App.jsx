@@ -6,7 +6,6 @@ import { useLoggedContext } from "@/contexts/loggedContext/loggedContext"
 const App = () => {
 
    const { logged } = useLoggedContext()
-
    return (
       <>
          { logged ? <Layout /> : <Login /> }
