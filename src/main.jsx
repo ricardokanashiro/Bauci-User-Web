@@ -7,6 +7,7 @@ import LoggedContextProvider from "@/contexts/loggedContext/loggedContextProvide
 import DaysFilterContextProvider from '@/contexts/daysFilterContext/daysFilterContextProvider.jsx'
 import ModalsContextProvider from '@/contexts/modalsContext/modalsContextProvider.jsx'
 import ProductsSelectedContextProvider from "@/contexts/productsSelectedContext/productsSelectedContextProvider"
+import SectionSelectedContextProvider from "@/contexts/sectionSelectedContext/sectionSelectedContextProvider"
 
 import './index.css'
 
@@ -16,7 +17,9 @@ createRoot(document.getElementById('root')).render(
       <DaysFilterContextProvider>
       <ModalsContextProvider>
       <ProductsSelectedContextProvider>
+      <SectionSelectedContextProvider>
          <App />
+      </SectionSelectedContextProvider>
       </ProductsSelectedContextProvider>
       </ModalsContextProvider>
       </DaysFilterContextProvider>

@@ -2,30 +2,49 @@ import { useState } from "react"
 
 import { useModalsContext } from "@/contexts/modalsContext/modalsContext"
 import { useProductsSelectedContext } from "@/contexts/productsSelectedContext/productsSelectedContext"
+import { useSectionSelectedContext } from "@/contexts/sectionSelectedContext/sectionSelectedContext" 
 
 const SelectProductModal = () => {
 
-   const [productNum, setProductNum] = useState(0)
+   const [productNum, setProductNum] = useState(1)
 
    const { toggleSelectProductModal } = useModalsContext()
-   const { productSelected, setProductsSelectedList } = useProductsSelectedContext()
+   const { productSelected, setProductsSelectedList, productsSelectedList } = useProductsSelectedContext()
+   const { setSectionSelected } = useSectionSelectedContext()
 
    function handleAddProductsSelectedList() {
 
-      setProductsSelectedList(prev => prev.push({ 
-            nome: productSelected.nome, 
-            prazoMin: productSelected.prazoMin,
-            prazoMax: productSelected.prazoMax,
-            img: productSelected.img,
-            quantidade: productNum
-      }))
+      const existentProduct = productsSelectedList.find(p => p.nome === productSelected.nome)
+
+      if(!existentProduct) {
+
+         setProductsSelectedList(prev => [...prev, {
+               nome: productSelected.nome, 
+               prazoMin: productSelected.prazoMin,
+               prazoMax: productSelected.prazoMax,
+               img: productSelected.img,
+               quantidade: productNum
+         }])
+
+         toggleSelectProductModal()
+         setSectionSelected("lista")
+
+         return
+      }
+
+      setProductsSelectedList(prev => prev.map(product => 
+         product.nome === productSelected.nome ? {...product, quantidade: productNum} : product
+      ))
+
+      toggleSelectProductModal()
+      setSectionSelected("lista")
    }
 
    function changeProductNum(operation) {
 
       if(operation === "decrease") {
 
-         if(productNum === 0) {
+         if(productNum === 1) {
             return
          }
 

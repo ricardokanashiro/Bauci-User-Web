@@ -1,11 +1,10 @@
-import { useState } from "react"
-
 import Home from "@/pages/Home"
 import Lista from "@/pages/Lista"
 import Usuario from "@/pages/Usuario"
 import ModalsWrapper from "@/components/ModalsWrapper"
 
-import { useModalsContext } from "../contexts/modalsContext/modalsContext"
+import { useModalsContext } from "@/contexts/modalsContext/modalsContext"
+import { useSectionSelectedContext } from "@/contexts/sectionSelectedContext/sectionSelectedContext" 
 
 const estilos = {
    menuBtn: "h-full flex-1 flex justify-center items-center flex-col gap-[.2rem]",
@@ -14,7 +13,7 @@ const estilos = {
 
 const Layout = () => {
 
-   const [sectionSelected, setSectionSelected] = useState("home")
+   const { sectionSelected, setSectionSelected } = useSectionSelectedContext()
 
    const { modalsWrapperActive } = useModalsContext()
 
