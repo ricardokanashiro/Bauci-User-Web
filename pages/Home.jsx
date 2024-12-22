@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react"
 
+import { CircularProgress } from "@mui/material"
+
+import { notifyError } from "@/utils/notify"
+
 import FilterList from "../components/FilterList"
 import HomeProdutoList from "../components/HomeProdutoList"
 
@@ -7,6 +11,7 @@ const Home = () => {
 
    const [searchValue, setSearchValue] = useState("")
    const [productsList, setProductsList] = useState([])
+   const [isLoading, setIsLoading] = useState(false)
 
    async function fetchDataFunc() {
 
@@ -14,6 +19,9 @@ const Home = () => {
       const { token } = JSON.parse(loginData)
 
       if (token) {
+
+         setIsLoading(true)
+
          try {
             const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/produto/${JSON.parse(loginData).categoriaID}`, {
                method: "GET",
@@ -24,7 +32,14 @@ const Home = () => {
 
             const fetchedData = await response.json()
 
-            setProductsList(fetchedData)
+            if(response.ok) {
+               setProductsList(fetchedData)
+               setIsLoading(false)
+               return
+            }
+
+            notifyError("Erro ao carregar lista!")
+
          }
          catch (error) {
             console.log("erro: " + error.message)
@@ -64,7 +79,12 @@ const Home = () => {
             </div>
 
             <button className="bg-veryDarkBlue w-[4rem] flex justify-center items-center rounded-[.4rem]" onClick={fetchDataFunc}>
-               <img src="/icon-reload-white.svg" alt="reload icon" className="w-[1.6rem]" />
+
+               { isLoading 
+                  ? (<CircularProgress size="2rem" sx={{ color: "#FFF" }} />) 
+                  : (<img src="/icon-reload-white.svg" alt="reload icon" className="w-[1.6rem]" />) 
+               }
+
             </button>
 
          </div>
