@@ -11,10 +11,12 @@ const SendListButton = () => {
 
    const loginDataItem = localStorage.getItem('loginData')
    const loginData = JSON.parse(loginDataItem)
+
+   const listaVazia = productsSelectedList.length === 0
    
    async function sendToWhatsapp() {
 
-      if(productsSelectedList.length === 0) {
+      if(listaVazia) {
          notifyError("Lista vazia!")
          return
       }
@@ -37,10 +39,11 @@ const SendListButton = () => {
       window.open(whatsappUrl, "_blank")
    }
 
+   const estilo = "bg-veryDarkBlue text-white w-full p-[.8rem] rounded-[.4rem] font-bold text-[1.4rem] mt-[1.5rem] mb-[1.5rem]"
+
    return (
       <button
-         className="bg-veryDarkBlue text-white w-full p-[.8rem] 
-         rounded-[.4rem] font-bold text-[1.4rem] mt-[1.5rem] mb-[1.5rem]"
+         className={listaVazia ? estilo + " opacity-[0.6]" : estilo}
          onClick={sendToWhatsapp}
       >
          Finalizar Lista
