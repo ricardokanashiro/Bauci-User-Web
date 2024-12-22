@@ -20,7 +20,7 @@ const HomeProdutoList = ({ productsList, searchValue, isLoading }) => {
          )}
 
          {
-            productsList.length === 0 && (
+            (!isLoading && productsList.length === 0) && (
                <div className="flex flex-col justify-center items-center flex-1">
                   <img src="/list-placeholder.svg" alt="list placeholder" className="w-[20rem]" />
                   <p className="text-[1.3rem] font-bold text-veryDarkBlue">Sua categoria está vazia</p>
