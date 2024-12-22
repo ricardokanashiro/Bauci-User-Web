@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { useLoggedContext } from "@/contexts/loggedContext/loggedContext"
 
@@ -16,8 +16,7 @@ const Login = () => {
 
    async function logIn() {
 
-      try 
-      {
+      try {
          const response = await fetch(import.meta.env.VITE_API_DOMAIN + '/usuario/login', {
             method: 'POST',
             headers: {
@@ -31,7 +30,7 @@ const Login = () => {
 
          const loginData = await response.json()
 
-         if(response.ok) {
+         if (response.ok) {
             localStorage.setItem('loginData', JSON.stringify(loginData))
             setLogged(true)
             setThereIsError(false)
@@ -48,6 +47,41 @@ const Login = () => {
 
    }
 
+   const validate = async () => {
+
+      const loginDataItem = localStorage.getItem('loginData')
+      const loginData = JSON.parse(loginDataItem)
+
+      if (!loginData.token) {
+         setLogged(false)
+      }
+
+      try {
+         const response = await fetch(import.meta.env.VITE_API_DOMAIN + '/usuario/validate', {
+
+            method: "POST",
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token: loginData.token }),
+
+         })
+
+         if (!response.ok) {
+            setLogged(false)
+         }
+
+         setLogged(true)
+      }
+      catch (error) {
+         console.log(error)
+      }
+   }
+
+   useEffect(() => {
+      validate()
+   }, [])
+
    return (
       <div className="flex flex-col items-center bg-veryDarkBlue w-full h-full">
 
@@ -55,8 +89,8 @@ const Login = () => {
             <img src="/bauci-logo.svg" alt="bauci logo" />
          </div>
 
-         <form 
-            className="w-full h-[300px] bg-white p-[25px] rounded-tl-[8px] rounded-tr-[8px] flex flex-col justify-between" 
+         <form
+            className="w-full h-[300px] bg-white p-[25px] rounded-tl-[8px] rounded-tr-[8px] flex flex-col justify-between"
             onSubmit={(e) => e.preventDefault()}
          >
 
@@ -69,14 +103,14 @@ const Login = () => {
                   <label htmlFor="loginInput" className={estilos.label}>Login</label>
 
                   <input
-                     type="text" 
-                     placeholder="Insira seu login" 
+                     type="text"
+                     placeholder="Insira seu login"
                      id="loginInput"
-                     onChange={(e) => setLoginCredentials(prev => ({...prev, login: e.target.value}))}
+                     onChange={(e) => setLoginCredentials(prev => ({ ...prev, login: e.target.value }))}
                      className={thereIsError ? estilos.input + " border-red-500" : estilos.input}
                   />
 
-                  { thereIsError && <p className={estilos.errorMessage}>Login Inválido!</p> }
+                  {thereIsError && <p className={estilos.errorMessage}>Login Inválido!</p>}
 
                </fieldset>
 
@@ -84,23 +118,23 @@ const Login = () => {
 
                   <label htmlFor="senhaInput" className="text-veryDarkBlue font-semibold text-[12px]">Senha</label>
 
-                  <input 
-                     type="password" 
-                     placeholder="Insira sua senha" 
+                  <input
+                     type="password"
+                     placeholder="Insira sua senha"
                      id="senhaInput"
-                     onChange={(e) => setLoginCredentials(prev => ({...prev, senha: e.target.value}))}
+                     onChange={(e) => setLoginCredentials(prev => ({ ...prev, senha: e.target.value }))}
                      className={thereIsError ? estilos.input + " border-red-500" : estilos.input}
                   />
 
-                  { thereIsError && <p className={estilos.errorMessage}>Senha Inválida!</p> }
+                  {thereIsError && <p className={estilos.errorMessage}>Senha Inválida!</p>}
 
                </fieldset>
-               
+
             </div>
 
-            <button 
-               type="submit" 
-               onClick={logIn} 
+            <button
+               type="submit"
+               onClick={logIn}
                className="bg-veryDarkBlue text-white font-bold w-full text-[1.3rem] p-[1rem] rounded-[.6rem]"
             >Entrar</button>
 

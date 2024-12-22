@@ -5,6 +5,8 @@ import ModalsWrapper from "@/components/ModalsWrapper"
 
 import { useModalsContext } from "@/contexts/modalsContext/modalsContext"
 import { useSectionSelectedContext } from "@/contexts/sectionSelectedContext/sectionSelectedContext" 
+import { useLoggedContext } from "../contexts/loggedContext/loggedContext"
+import { useEffect } from "react"
 
 const estilos = {
    menuBtn: "h-full flex-1 flex justify-center items-center flex-col gap-[.2rem]",
@@ -14,8 +16,41 @@ const estilos = {
 const Layout = () => {
 
    const { sectionSelected, setSectionSelected } = useSectionSelectedContext()
-
    const { modalsWrapperActive } = useModalsContext()
+   const { setLogged } = useLoggedContext()
+
+   const validate = async () => {
+
+      const loginDataItem = localStorage.getItem('loginData')
+      const loginData = JSON.parse(loginDataItem)
+
+      if (!loginData.token) {
+         setLogged(false)
+      }
+
+      try {
+         const response = await fetch(import.meta.env.VITE_API_DOMAIN + '/usuario/validate', {
+
+            method: "POST",
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token: loginData.token }),
+
+         })
+
+         if (!response.ok) {
+            setLogged(false)
+         }
+      }
+      catch (error) {
+         console.log(error)
+      }
+   }
+
+   useEffect(() => {
+      validate()
+   }, [])
 
    return (
       <div className="flex flex-col w-full h-full max-h-[100dvh]">
