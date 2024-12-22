@@ -8,7 +8,7 @@ const generatePDF = async (productList) => {
    const loginDataItem = localStorage.getItem('loginData')
    const loginData = JSON.parse(loginDataItem)
 
-   const currentDate = moment().format('DD:MM:YYYY')
+   const currentDate = moment().format('DD/MM/YYYY')
    const currentTime = moment().format('HH:mm:ss')
 
    const htmlString = `
@@ -51,14 +51,14 @@ const generatePDF = async (productList) => {
    const message = `
 *PEDIDO DE COMPRA - Bauci System*
 
-*Nome*: ${loginData.nome},
+*Nome*: ${loginData.nome}
 *Categoria*: ${loginData.categoria}
-*Data*: ${currentDate},
+*Data*: ${currentDate}
 *Horário*: ${currentTime}
 
 *ITENS:*
 
-${productList.map(product => `- ${product.nome}: ${product.quantidade}\n`).join('')}
+${productList.map(product => `- ${product.nome}: ${product.quantidade} unidade(s)\n`).join('')}
 `
 
    return { pdfBlob, message }
