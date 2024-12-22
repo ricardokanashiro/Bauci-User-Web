@@ -1,6 +1,8 @@
 import moment from "moment"
 
 import generatePDF from "../utils/generatePDF"
+import { notifyError } from "../utils/notify"
+
 import { useProductsSelectedContext } from "@/contexts/productsSelectedContext/productsSelectedContext"
 
 const SendListButton = () => {
@@ -11,6 +13,11 @@ const SendListButton = () => {
    const loginData = JSON.parse(loginDataItem)
    
    async function sendToWhatsapp() {
+
+      if(productsSelectedList.length === 0) {
+         notifyError("Lista vazia!")
+         return
+      }
 
       const time = moment().format("DD-MM-YYYY")
 
