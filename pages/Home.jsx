@@ -90,7 +90,7 @@ const Home = () => {
          </div>
 
          <FilterList />
-         <HomeProdutoList productsList={productsList} searchValue={searchValue} />
+         <HomeProdutoList productsList={productsList} searchValue={searchValue} isLoading={isLoading} />
 
       </div>
    )

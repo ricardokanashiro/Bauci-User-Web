@@ -15,6 +15,15 @@ const Lista = () => {
          <div className="w-full mt-[3rem] flex flex-col gap-[1.5rem] flex-1 overflow-auto">
 
             {
+               productsSelectedList.length === 0 && (
+                  <div className="flex flex-col justify-center items-center flex-1">
+                     <img src="/list-placeholder.svg" alt="list placeholder" className="w-[20rem]" />
+                     <p className="text-[1.3rem] font-bold text-veryDarkBlue">Nenhum item adicionado</p>
+                  </div>
+               )
+            }
+
+            {
                productsSelectedList.map((product, index) => (
 
                   <ListProdutoCard 
