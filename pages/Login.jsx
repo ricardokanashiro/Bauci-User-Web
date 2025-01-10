@@ -30,6 +30,8 @@ const Login = () => {
 
          const loginData = await response.json()
 
+         console.log(loginData)
+
          if (response.ok) {
             localStorage.setItem('loginData', JSON.stringify(loginData))
             setLogged(true)

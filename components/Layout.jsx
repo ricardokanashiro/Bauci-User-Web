@@ -40,6 +40,7 @@ const Layout = () => {
          })
 
          if (!response.ok) {
+            localStorage.clear()
             setLogged(false)
          }
       }
